@@ -5,15 +5,16 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Global.asax.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Views\Home\Persona.cshtml">
     <Files>
-      <File FileName="Views\Home\Process.cshtml" Line="26" Column="5" />
-      <File FileName="Views\Shared\_Layout.cshtml" Line="14" Column="1" />
+      <File FileName="Models\PersonaDao.cs" Line="13" Column="3" />
       <File FileName="Web.config" Line="1" Column="1" />
-      <File FileName="packages.config" Line="7" Column="12" />
-      <File FileName="Global.asax.cs" Line="16" Column="1" />
-      <File FileName="Views\_ViewStart.cshtml" Line="1" Column="1" />
-      <File FileName="Controllers\HomeController.cs" Line="31" Column="1" />
+      <File FileName="Controllers\HomeController.cs" Line="11" Column="3" />
+      <File FileName="App_Start\RouteConfig.cs" Line="1" Column="1" />
+      <File FileName="Global.asax.cs" Line="4" Column="1" />
+      <File FileName="packages.config" Line="7" Column="91" />
+      <File FileName="Views\Web.config" Line="10" Column="90" />
+      <File FileName="Views\Home\Persona.cshtml" Line="11" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
 </Properties>

@@ -17,13 +17,20 @@ namespace mvc.Controllers
 			ViewData["Version"] = mvcName.Version.Major + "." + mvcName.Version.Minor;
 			ViewData["Runtime"] = isMono ? "Mono" : ".NET";
 
-			return View(new Persona());
+			var dao = new PersonaDao();
+			var persona = dao.Recuperar(1);
+
+			return View("IndexPersona", persona);
 		}
 
 		public ActionResult Process(Persona persona)
 		{
-			persona.Nombre += "X";
-			return View("Process", persona);
+			persona.Mensaje = "Datos seleccionados: " + 
+				persona.Nombre + " - " +
+				persona.Edad + " - " +
+				persona.SelectedSex + " - " +
+				persona.Casado;
+			return View("Persona", persona);
 		}
 	}
 }
