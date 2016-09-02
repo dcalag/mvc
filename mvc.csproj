@@ -58,6 +58,11 @@
     <Reference Include="System.Web.WebPages.Razor">
       <HintPath>packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="FirebirdSql.Data.FirebirdClient">
+      <HintPath>packages\FirebirdSql.Data.FirebirdClient.5.1.0\lib\net45\FirebirdSql.Data.FirebirdClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Web.Mvc">
       <HintPath>packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
@@ -74,17 +79,18 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Models\Persona.cs" />
+    <Compile Include="Models\PersonaDao.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\IndexPersona.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
-    <Content Include="Views\Home\Process.cshtml" />
+    <Content Include="Views\Home\Persona.cshtml" />
     <Content Include="Scripts\intercooler-0.9.7.js" />
     <Content Include="Scripts\jquery-3.1.0.min.js" />
   </ItemGroup>

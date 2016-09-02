@@ -1,0 +1,51 @@
+﻿@{
+    Layout = null;
+ }
+@model Persona
+
+<form  ic-post-to='@Url.Content("~/Home/Process")'
+  ic-replace-target="true" ic-on-error="onError()" ic-on-beforeSend="onBeforeSend()">
+	<div id="Mensaje">@Model.Mensaje</div>
+	<input type="text" value="@Model.Nombre" id="Nombre" name="Nombre" />
+	<input type="text" value="@Model.Edad" id="Edad" name="Edad" />
+	<input type="hidden" id="SelectedSex" name="SelectedSex" value="@Model.SelectedSex" />
+	<select id="Sexos">
+		@foreach (var item in @Model.Sexo)
+    	{
+    		<option value="@item.Value">@item.Text</option>
+    	}
+	</select>
+	<br>
+	<span>Casado:</span>
+	<input type="radio" name="Casado" value="true"  
+	@if(Model.Casado)
+	{ 
+		@:checked 
+	}
+	>Si
+	<input type="radio" name="Casado" value="false"
+	@if(!Model.Casado)
+	{ 
+		@:checked 
+	}
+	>No<br>
+	
+	<input type="submit" value="Enviar" />
+	<img style="display:none" id="loader" src='@Url.Content("~/Content/ajax-loader.gif")' />
+
+	<script>
+  		$('#Sexos').val( $('#SelectedSex').val() );
+		$('#Sexos').on('change', function() {
+			$('#SelectedSex').val( $('#Sexos').val() );
+		});
+
+		function onError(){
+	    	$('#mensajes').html('Error!');
+	    	$('#loader').hide();
+	  	}
+
+	  	function onBeforeSend(){
+	    	$('#loader').show();
+	  	}
+	</script>
+</form>
