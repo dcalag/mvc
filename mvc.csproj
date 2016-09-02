@@ -92,8 +92,6 @@
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
     <Content Include="Views\Home\Persona.cshtml" />
-    <Content Include="Scripts\intercooler-0.9.7.js" />
-    <Content Include="Scripts\jquery-3.1.0.min.js" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
