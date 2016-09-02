@@ -80,6 +80,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\PersonaDao.cs" />
+    <Compile Include="Models\BaseDao.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />

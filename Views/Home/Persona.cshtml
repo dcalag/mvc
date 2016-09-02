@@ -6,16 +6,18 @@
 <form  ic-post-to='@Url.Content("~/Home/Process")'
   ic-replace-target="true" ic-on-error="onError()" ic-on-beforeSend="onBeforeSend()">
 	<div id="Mensaje">@Model.Mensaje</div>
+	<label for="Nombre">Nombre:</label>
 	<input type="text" value="@Model.Nombre" id="Nombre" name="Nombre" />
-	<input type="text" value="@Model.Edad" id="Edad" name="Edad" />
+	<label for="Edad">Edad:</label>
+	<input type="number" value="@Model.Edad" id="Edad" name="Edad" />
 	<input type="hidden" id="SelectedSex" name="SelectedSex" value="@Model.SelectedSex" />
+	<label for="Sexos">Sexo:</label>
 	<select id="Sexos">
 		@foreach (var item in @Model.Sexo)
     	{
     		<option value="@item.Value">@item.Text</option>
     	}
 	</select>
-	<br>
 	<span>Casado:</span>
 	<input type="radio" name="Casado" value="true"  
 	@if(Model.Casado)
@@ -28,7 +30,7 @@
 	{ 
 		@:checked 
 	}
-	>No<br>
+	>No
 	
 	<input type="submit" value="Enviar" />
 	<img style="display:none" id="loader" src='@Url.Content("~/Content/ajax-loader.gif")' />

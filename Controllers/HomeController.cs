@@ -11,14 +11,24 @@ namespace mvc.Controllers
 	{
 		public ActionResult Index()
 		{
+			/*
 			var mvcName = typeof(Controller).Assembly.GetName();
 			var isMono = Type.GetType("Mono.Runtime") != null;
 
 			ViewData["Version"] = mvcName.Version.Major + "." + mvcName.Version.Minor;
 			ViewData["Runtime"] = isMono ? "Mono" : ".NET";
+			*/
+
+			Persona persona = null;
 
 			var dao = new PersonaDao();
-			var persona = dao.Recuperar(1);
+			try{
+				persona = dao.Recuperar(1);
+			}
+			catch (Exception e) {
+				persona = new Persona ();
+				persona.Mensaje = "Error: " + e.Message;
+			}
 
 			return View("IndexPersona", persona);
 		}

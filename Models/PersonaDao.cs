@@ -4,31 +4,11 @@ using FirebirdSql.Data.FirebirdClient;
 
 namespace mvc
 {
-	public class PersonaDao
+	public class PersonaDao : BaseDao
 	{
 		public PersonaDao()
 		{
-		}
-
-		private string ConnectionString()
-		{
-			string connectionString =
-				"User=" + ConfigurationManager.AppSettings["User"] + ";" +
-				"Password=" + ConfigurationManager.AppSettings["Password"] + ";" +
-				"Database=" + ConfigurationManager.AppSettings["Database"] + "; " +
-				"DataSource=" + ConfigurationManager.AppSettings["Datasource"] + "; " +
-				"Port=3050;" +
-				"Dialect=3;" +
-				"Charset=UTF8;" +
-				"Role=;" +
-				"Connection lifetime=15;" +
-				"Pooling=true;" +
-				"MinPoolSize=0;" +
-				"MaxPoolSize=50;" +
-				"Packet Size=8192;" +
-				"ServerType=0";			
-			return connectionString;
-		}
+		}			
 
 		public Persona Recuperar(int AId)
 		{
@@ -64,12 +44,12 @@ namespace mvc
 
 				return persona;
 			}
-			catch (Exception e)
+			catch
 			{
 				if (transaction != null)
 					transaction.Rollback();				
 				connection.Close();
-				return persona;
+				throw;
 			}
 		}
 	}
