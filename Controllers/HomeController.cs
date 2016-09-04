@@ -11,19 +11,41 @@ namespace mvc.Controllers
 	{
 		public ActionResult Index()
 		{
+			ListaPersonas lista = new ListaPersonas ();;
+
+			var dao = new PersonaDao();
+			try{
+				lista.Lista = dao.RecuperarTodos();
+			}
+			catch (Exception e) {
+				lista.Mensaje = "Error: " + e.Message;
+			}
+
+			return View("Personas", lista);
+
 			/*
-			var mvcName = typeof(Controller).Assembly.GetName();
-			var isMono = Type.GetType("Mono.Runtime") != null;
-
-			ViewData["Version"] = mvcName.Version.Major + "." + mvcName.Version.Minor;
-			ViewData["Runtime"] = isMono ? "Mono" : ".NET";
-			*/
-
 			Persona persona = null;
 
 			var dao = new PersonaDao();
 			try{
 				persona = dao.Recuperar(1);
+			}
+			catch (Exception e) {
+				persona = new Persona ();
+				persona.Mensaje = "Error: " + e.Message;
+			}
+
+			return View("IndexPersona", persona);
+			*/
+		}
+
+		public ActionResult IndexPersona(Int64 id)
+		{
+			Persona persona = null;
+
+			var dao = new PersonaDao();
+			try{
+				persona = dao.Recuperar(id);
 			}
 			catch (Exception e) {
 				persona = new Persona ();

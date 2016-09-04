@@ -81,6 +81,8 @@
     <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\PersonaDao.cs" />
     <Compile Include="Models\BaseDao.cs" />
+    <Compile Include="Models\ListaPersonas.cs" />
+    <Compile Include="Models\BaseModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
@@ -92,6 +94,7 @@
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
     <Content Include="Views\Home\Persona.cshtml" />
+    <Content Include="Views\Home\Personas.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

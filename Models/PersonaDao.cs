@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using FirebirdSql.Data.FirebirdClient;
+using System.Collections.Generic;
 
 namespace mvc
 {
@@ -8,9 +9,54 @@ namespace mvc
 	{
 		public PersonaDao()
 		{
-		}			
+		}		
 
-		public Persona Recuperar(int AId)
+		public List<Persona> RecuperarTodos()
+		{
+			FbConnection connection = new FbConnection(ConnectionString());
+			FbTransaction transaction = null;
+			var lista = new List<Persona>();
+
+			try
+			{
+				connection.Open();
+				transaction = connection.BeginTransaction(System.Data.IsolationLevel.Snapshot);
+
+				FbCommand command = new FbCommand();
+				Persona persona;
+
+				command.CommandText =
+					"SELECT ID, NOMBRE, EDAD FROM PERSONAS";
+				command.Connection = connection;
+				command.Transaction = transaction;
+
+				// Execute Update
+				FbDataReader reader = command.ExecuteReader();
+
+				while (reader.Read())
+				{
+					persona = new Persona();
+					persona.Id = reader.GetInt64(0);
+					persona.Nombre = reader.GetString(1);
+					persona.Edad = reader.GetString(2);
+					lista.Add(persona);
+				}
+
+				transaction.Commit();
+				connection.Close();
+
+				return lista;
+			}
+			catch
+			{
+				if (transaction != null)
+					transaction.Rollback();				
+				connection.Close();
+				throw;
+			}
+		}
+
+		public Persona Recuperar(Int64 AId)
 		{
 			FbConnection connection = new FbConnection(ConnectionString());
 			FbTransaction transaction = null;

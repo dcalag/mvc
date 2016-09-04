@@ -3,17 +3,18 @@ using System.Collections.Generic;
 
 namespace mvc
 {
-	public class Persona
+	public class Persona : BaseModel
 	{
+		public Int64 Id { get; set; }
 		public string Nombre { get; set; }
 		public string Edad { get; set; }
 		public List<SelectItem> Sexo { get; set; }
 		public string SelectedSex { get; set; }
-		public string Mensaje { get; set; }
 		public bool Casado { get; set; }
 
 		public Persona()
 		{
+			Id = 0;
 			Mensaje = "";
 			Nombre = "";
 			Edad = "";
