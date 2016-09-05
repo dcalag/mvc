@@ -11,14 +11,18 @@ sudo apt-get update
 sudo apt-get install apache2
 sudo apt-get install libapache2-mod-mono mono-apache-server4
 
+#detener server para hacer cambios.
+sudo /etc/init.d/apache2 stop
+app=mvc
 # descargar un archivo de configuración de la herramienta online:
 # http://go-mono.com/config-mod-mono/
 # y copiarlo a /etc/apache2/conf-available
 # Nota: antes de copiarlo checar el path 'MonoServerPath' y establecerlo como:
 # MonoServerPath <app> "/usr/bin/mod-mono-server4"
-# habilitar la configuración con:
-#sudo a2enconf <app>.conf
+sudo cp $app.conf /etc/apache2/conf-available
+# habilitar la configuración:
+sudo a2enconf $app.conf
 # habilitar el módulo de mod_mono:
-#sudo a2enmod mod_mono
+sudo a2enmod mod_mono
 #reiniciar servidor apache2 para que surtan efecto los cambios:
-#sudo /etc/init.d/apache2 restart
+sudo /etc/init.d/apache2 start
