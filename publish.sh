@@ -1,4 +1,5 @@
 #!/bin/bash
+mdtool build mvc.sln
 dest=./publish
 rm -r $dest
 mkdir $dest
