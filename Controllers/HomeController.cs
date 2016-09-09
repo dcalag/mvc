@@ -4,39 +4,32 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using System.Web.Security;
 
 namespace mvc.Controllers
 {
 	public class HomeController : Controller
 	{
-		public ActionResult Index()
+		public ActionResult Inicio()
 		{
-			ListaPersonas lista = new ListaPersonas ();;
+			return View("Inicio");
+		}
+
+		public ActionResult Personas()
+		{
+			ListaPersonas lista = new ListaPersonas(); ;
 
 			var dao = new PersonaDao();
-			try{
+			try
+			{
 				lista.Lista = dao.RecuperarTodos();
 			}
-			catch (Exception e) {
+			catch (Exception e)
+			{
 				lista.Mensaje = "Error: " + e.Message;
 			}
 
 			return View("Personas", lista);
-
-			/*
-			Persona persona = null;
-
-			var dao = new PersonaDao();
-			try{
-				persona = dao.Recuperar(1);
-			}
-			catch (Exception e) {
-				persona = new Persona ();
-				persona.Mensaje = "Error: " + e.Message;
-			}
-
-			return View("IndexPersona", persona);
-			*/
 		}
 
 		public ActionResult IndexPersona(Int64 id)
@@ -55,14 +48,41 @@ namespace mvc.Controllers
 			return View("IndexPersona", persona);
 		}
 
-		public ActionResult Process(Persona persona)
+		public ActionResult ProcessPersona(Persona persona)
 		{
-			persona.Mensaje = "Datos seleccionados: " + 
-				persona.Nombre + " - " +
-				persona.Edad + " - " +
-				persona.SelectedSex + " - " +
-				persona.Casado;
+			var personaDao = new PersonaDao();
+			try
+			{
+				personaDao.Guardar(persona);
+				persona.Mensaje = "Elemento guardado correctamente.";
+			}
+			catch (Exception e)
+			{
+				persona.Mensaje = e.Message;
+			}
+
 			return View("Persona", persona);
+		}
+
+		public ActionResult ProcessLogin(Login login)
+		{
+			login.Mensaje = "Login ok!";
+
+			FormsAuthentication.SetAuthCookie(login.Usuario, false);
+
+			return View("Login", login);
+		}
+
+		public ActionResult Login()
+		{
+			return View("IndexLogin", new Login());
+		}
+
+		public ActionResult Logout()
+		{
+			FormsAuthentication.SignOut();
+
+			return View("Inicio");
 		}
 	}
 }

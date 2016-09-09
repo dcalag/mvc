@@ -83,6 +83,7 @@
     <Compile Include="Models\BaseDao.cs" />
     <Compile Include="Models\ListaPersonas.cs" />
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\Login.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
@@ -95,6 +96,9 @@
     <Content Include="packages.config" />
     <Content Include="Views\Home\Persona.cshtml" />
     <Content Include="Views\Home\Personas.cshtml" />
+    <Content Include="Views\Home\Inicio.cshtml" />
+    <Content Include="Views\Home\IndexLogin.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

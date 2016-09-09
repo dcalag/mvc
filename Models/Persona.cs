@@ -18,7 +18,7 @@ namespace mvc
 			Mensaje = "";
 			Nombre = "";
 			Edad = "";
-			SelectedSex = "F";
+			SelectedSex = "M";
 			Casado = false;
 			Sexo = new List<SelectItem>();
 			Sexo.Add(new SelectItem("M", "Masculino"));

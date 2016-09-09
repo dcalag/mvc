@@ -3,9 +3,10 @@
  }
 @model Persona
 
-<form  ic-post-to='@Url.Content("~/Home/Process")'
+<form  ic-post-to='@Url.Content("~/Home/ProcessPersona")'
   ic-replace-target="true" ic-on-error="onError()" ic-on-beforeSend="onBeforeSend()">
   	<div id="Mensaje">@Model.Mensaje</div>	
+	<input type="hidden" id="Id" name="Id" value="@Model.Id" />
 	<div class="form-group">
 		<label for="Nombre">Nombre:</label>
 		<input type="text" class="form-control" value="@Model.Nombre" id="Nombre" name="Nombre" />
