@@ -7,6 +7,7 @@ cp -a bin/. $dest/bin/
 cp -a Content/. $dest/Content/
 cp -a Scripts/. $dest/Scripts/
 cp -a Views/. $dest/Views/
+cp -a db/. $dest/db/
 cp Global.asax $dest/Global.asax
 cp Global.asax.cs $dest/Global.asax.cs
 cp Web.config $dest/Web.config
