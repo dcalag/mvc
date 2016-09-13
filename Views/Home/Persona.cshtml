@@ -3,10 +3,11 @@
  }
 @model Persona
 
-<form  ic-post-to='@Url.Content("~/Home/ProcessPersona")'
-  ic-replace-target="true" ic-on-error="onError()" ic-on-beforeSend="onBeforeSend()">
+<form ic-post-to='@Url.Action("ProcessPersona", "Home")'
+  		ic-replace-target="true" ic-on-error="onError()" ic-on-beforeSend="onBeforeSend()" >
   	<div id="Mensaje">@Model.Mensaje</div>	
 	<input type="hidden" id="Id" name="Id" value="@Model.Id" />
+	<input type="hidden" id="Eliminar" name="Eliminar" value="@Model.Eliminar" />
 	<div class="form-group">
 		<label for="Nombre">Nombre:</label>
 		<input type="text" class="form-control" value="@Model.Nombre" id="Nombre" name="Nombre" />
@@ -44,10 +45,15 @@
 		>No
 		</div>
 	</div>
-	<input type="submit" value="Enviar" class="btn btn-default" />
+	<input type="submit" value="Guardar" class="btn btn-default" />
+	<input type="submit" value="Eliminar" class="btn btn-default" id="btnEliminar" />
 	<img style="display:none" id="loader" src='@Url.Content("~/Content/ajax-loader.gif")' />
 
 	<script>
+		$('#btnEliminar').click(function() {
+		 	$('#Eliminar').val(1);
+		});
+		
   		$('#Sexos').val( $('#SelectedSex').val() );
 		$('#Sexos').on('change', function() {
 			$('#SelectedSex').val( $('#Sexos').val() );

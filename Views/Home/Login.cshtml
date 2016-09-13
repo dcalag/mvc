@@ -14,10 +14,16 @@
 		<label for="Password">Password:</label>
 		<input type="password" class="form-control" value="@Model.Password" id="Password" name="Password" />
 	</div>
-	<input type="submit" value="Enviar" class="btn btn-default" />
+	<input type="submit" value="Enviar" class="btn btn-default" />	
 	<img style="display:none" id="loader" src='@Url.Content("~/Content/ajax-loader.gif")' />
 
+	<input type="hidden" value="@Model.LoginOk" name="LoginOk" id="LoginOk" />
+	
 	<script>
+		if ($('#LoginOk').val() == 1) {
+			window.location.href = '@Url.Action("Inicio", "Home")';	
+		}
+		
 		function onError(){
 	    	$('#mensajes').html('Error!');
 	    	$('#loader').hide();

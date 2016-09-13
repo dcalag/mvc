@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using System.Web.Security;
+using System.Configuration;
 
 namespace mvc.Controllers
 {
@@ -36,13 +37,20 @@ namespace mvc.Controllers
 		{
 			Persona persona = null;
 
-			var dao = new PersonaDao();
-			try{
-				persona = dao.Recuperar(id);
-			}
-			catch (Exception e) {
-				persona = new Persona ();
-				persona.Mensaje = "Error: " + e.Message;
+			if (id == 0)
+				persona = new Persona();
+			else
+			{
+				var dao = new PersonaDao();
+				try
+				{
+					persona = dao.Recuperar(id);
+				}
+				catch (Exception e)
+				{
+					persona = new Persona();
+					persona.Mensaje = "Error: " + e.Message;
+				}
 			}
 
 			return View("IndexPersona", persona);
@@ -50,26 +58,53 @@ namespace mvc.Controllers
 
 		public ActionResult ProcessPersona(Persona persona)
 		{
-			var personaDao = new PersonaDao();
-			try
+			if (persona.Eliminar > 0)
 			{
-				personaDao.Guardar(persona);
-				persona.Mensaje = "Elemento guardado correctamente.";
+				var personaDao = new PersonaDao();
+				try
+				{
+					personaDao.Eliminar(persona.Id);
+					persona = new Persona();
+					persona.Mensaje = "Elemento eliminado correctamente";
+					return View("Persona", persona);
+				}
+				catch (Exception e)
+				{
+					persona.Mensaje = e.Message;					
+					return View("Persona", persona);
+				}
 			}
-			catch (Exception e)
+			else
 			{
-				persona.Mensaje = e.Message;
-			}
+				var personaDao = new PersonaDao();
+				try
+				{
+					personaDao.Guardar(persona);
+					persona.Mensaje = "Elemento guardado correctamente.";
+				}
+				catch (Exception e)
+				{
+					persona.Mensaje = e.Message;
+				}
 
-			return View("Persona", persona);
+				return View("Persona", persona);
+			}
 		}
+
 
 		public ActionResult ProcessLogin(Login login)
 		{
-			login.Mensaje = "Login ok!";
+			var adminUser = ConfigurationManager.AppSettings["AdminUser"];
+			var adminPass = ConfigurationManager.AppSettings["AdminPass"];
 
-			FormsAuthentication.SetAuthCookie(login.Usuario, false);
-
+			if (login.Usuario == adminUser && login.Password == adminPass)
+			{
+				FormsAuthentication.SetAuthCookie(login.Usuario, false);
+				login.LoginOk = 1;
+				return View("Login", login);
+			}
+				
+			login.Mensaje = "Credenciales incorrectas.";
 			return View("Login", login);
 		}
 

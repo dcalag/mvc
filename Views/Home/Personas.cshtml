@@ -1,6 +1,7 @@
 ﻿@model ListaPersonas
 
 <h2>Personas</h2>
+<a href='@Url.Action("IndexPersona", "Home", new {id = 0} )'>Nueva persona</a>
 <p>Seleccione una persona para ver su información:</p>            
 <div id="Mensaje">@Model.Mensaje</div>
 <table class="table table-bordered">

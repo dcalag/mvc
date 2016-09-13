@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace mvc
-{
+{	
 	public class Persona : BaseModel
 	{
 		public Int64 Id { get; set; }
@@ -11,6 +11,7 @@ namespace mvc
 		public List<SelectItem> Sexo { get; set; }
 		public string SelectedSex { get; set; }
 		public bool Casado { get; set; }
+		public int Eliminar { get; set; }
 
 		public Persona()
 		{
@@ -23,6 +24,7 @@ namespace mvc
 			Sexo = new List<SelectItem>();
 			Sexo.Add(new SelectItem("M", "Masculino"));
 			Sexo.Add(new SelectItem("F", "Femenino"));
+			Eliminar = 0;
 		}
 	}
 
