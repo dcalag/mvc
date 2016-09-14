@@ -1,0 +1,13 @@
+http://www.mono-project.com/docs/web/mod_mono/
+Apache performance tweaks:
+
+* Keep alive off (apache2.conf):
+KeepAlive Off
+
+* Usar mpm tipo worker:
+Verificar mpm actual:
+apachectl -V | grep -i mpm
+Deshabilitar mpm actual (pro ejemplo mpm_event):
+sudo a2dismod mpm_event
+Habilitar mpm worker:
+sudo a2enmod mpm_worker
